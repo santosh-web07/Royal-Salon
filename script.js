@@ -603,10 +603,34 @@ function loadAppointments() {
 
 <p><strong>Message:</strong> ${appointment.message || "N/A"}</p>
 
+<button
+type="button"
+class="delete-appointment-btn"
+onclick="deleteAppointment(${index})">
+Delete Appointment
+</button>
+
         </div>
       `;
 
     }).join("");
+}
+
+function deleteAppointment(index) {
+
+  const appointments =
+    JSON.parse(
+      localStorage.getItem("royalSalonAppointments")
+    ) || [];
+
+  appointments.splice(index, 1);
+
+  localStorage.setItem(
+    "royalSalonAppointments",
+    JSON.stringify(appointments)
+  );
+
+  loadAppointments();
 }
 
 clearAppointmentsBtn.addEventListener("click", () => {
