@@ -603,6 +603,31 @@ function loadAppointments() {
 
 <p><strong>Message:</strong> ${appointment.message || "N/A"}</p>
 
+<label>
+  <strong>Status:</strong>
+
+  <select
+    class="appointment-status"
+    onchange="updateAppointmentStatus(${index}, this.value)">
+
+    <option value="Pending"
+      ${appointment.status === "Pending" || !appointment.status ? "selected" : ""}>
+      Pending
+    </option>
+
+    <option value="Confirmed"
+      ${appointment.status === "Confirmed" ? "selected" : ""}>
+      Confirmed
+    </option>
+
+    <option value="Completed"
+      ${appointment.status === "Completed" ? "selected" : ""}>
+      Completed
+    </option>
+
+  </select>
+</label>
+
 <button
 type="button"
 class="delete-appointment-btn"
@@ -617,6 +642,27 @@ Delete Appointment
 }
 
 function deleteAppointment(index) {
+
+  function updateAppointmentStatus(index, status) {
+
+  const appointments =
+    JSON.parse(
+      localStorage.getItem("royalSalonAppointments")
+    ) || [];
+
+  if (!appointments[index]) {
+    return;
+  }
+
+  appointments[index].status = status;
+
+  localStorage.setItem(
+    "royalSalonAppointments",
+    JSON.stringify(appointments)
+  );
+
+  loadAppointments();
+}
 
   const appointments =
     JSON.parse(
