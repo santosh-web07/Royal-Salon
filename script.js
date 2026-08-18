@@ -556,6 +556,60 @@ phoneInput.addEventListener("input", () => {
 
 });
 
+// ================= OWNER APPOINTMENTS =================
+
+const appointmentsList =
+  document.getElementById("appointmentsList");
+
+const clearAppointmentsBtn =
+  document.getElementById("clearAppointmentsBtn");
+
+function loadAppointments() {
+
+  const appointments =
+    JSON.parse(
+      localStorage.getItem("royalSalonAppointments")
+    ) || [];
+
+  if (appointments.length === 0) {
+
+    appointmentsList.innerHTML =
+      `<p class="no-appointments">
+        No appointments found.
+      </p>`;
+
+    return;
+  }
+
+  appointmentsList.innerHTML =
+    appointments.map((appointment, index) => {
+
+      return `
+        <div class="appointment-item">
+
+          <h4>Appointment #${index + 1}</h4>
+
+          <p><strong>Name:</strong> ${appointment.name || "N/A"}</p>
+
+          <p><strong>Phone:</strong> ${appointment.phone || "N/A"}</p>
+
+          <p><strong>Email:</strong> ${appointment.email || "N/A"}</p>
+
+        </div>
+      `;
+
+    }).join("");
+}
+
+clearAppointmentsBtn.addEventListener("click", () => {
+
+  localStorage.removeItem("royalSalonAppointments");
+
+  loadAppointments();
+
+});
+
+loadAppointments();
 
 // ================= ACTIVE NAVIGATION =================
 
