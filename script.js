@@ -595,6 +595,14 @@ function loadAppointments() {
 
           <p><strong>Email:</strong> ${appointment.email || "N/A"}</p>
 
+          <p><strong>Service:</strong> ${appointment.service || "N/A"}</p>
+
+<p><strong>Date:</strong> ${appointment.date || "N/A"}</p>
+
+<p><strong>Time:</strong> ${appointment.time || "N/A"}</p>
+
+<p><strong>Message:</strong> ${appointment.message || "N/A"}</p>
+
         </div>
       `;
 
