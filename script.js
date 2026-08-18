@@ -502,10 +502,15 @@ appointmentForm.addEventListener(
     };
 
 
-    localStorage.setItem(
-      "royalSalonAppointment",
-      JSON.stringify(appointmentData)
-    );
+    let appointments =
+  JSON.parse(localStorage.getItem("royalSalonAppointments")) || [];
+
+appointments.push(appointmentData);
+
+localStorage.setItem(
+  "royalSalonAppointments",
+  JSON.stringify(appointments)
+);
 
 
     submitBtn.disabled = true;
