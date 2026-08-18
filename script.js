@@ -643,18 +643,13 @@ Delete Appointment
 
 function deleteAppointment(index) {
 
-  function updateAppointmentStatus(index, status) {
-
   const appointments =
     JSON.parse(
       localStorage.getItem("royalSalonAppointments")
     ) || [];
 
-  if (!appointments[index]) {
-    return;
-  }
-
-  appointments[index].status = status;
+  appointment.splice(index, 1);
+  
 
   localStorage.setItem(
     "royalSalonAppointments",
@@ -664,12 +659,20 @@ function deleteAppointment(index) {
   loadAppointments();
 }
 
+function updateAppointmentStatus(index,status) {
+  
+
   const appointments =
     JSON.parse(
+    
       localStorage.getItem("royalSalonAppointments")
     ) || [];
 
-  appointments.splice(index, 1);
+  if (!appointments[index]) {
+    return;
+  }
+
+  appointments[index].status = status;
 
   localStorage.setItem(
     "royalSalonAppointments",
