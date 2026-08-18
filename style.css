@@ -1324,3 +1324,7 @@ section {
   }
 
 }
+
+#ownerDashboard {
+  display: none;
+}
