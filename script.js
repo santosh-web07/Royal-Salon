@@ -526,6 +526,8 @@ appointmentForm.addEventListener(
 
     charCount.textContent = "0";
 
+    submitBtn.textContent = "Sending...";
+
 
     setTimeout(() => {
 
